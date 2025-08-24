@@ -137,7 +137,7 @@ export default function Page() {
                         <button
                             id="hamburger"
                             className="md:hidden p-2 rounded-xl hover:bg-neutral-100"
-                            onClick={() => setShowMobileNav(true)}
+                            onClick={() => setShowMobileNav((prev) => !prev)}
                         >
                             <Menu className="size-5"/>
                         </button>
