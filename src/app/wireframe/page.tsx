@@ -24,7 +24,7 @@ import {
     PauseCircle,
     Plus,
     Filter,
-    Eye,
+    Eye, LucideProps,
 } from "lucide-react";
 
 // --- Mock data ---
@@ -75,7 +75,11 @@ export default function Page() {
                         </div>
                     </div>
                     <nav className="mt-6 flex flex-col gap-1">
-                        {nav.map((n) => (
+                        {nav.map((n:{
+                            label: string
+                            icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>
+                            key: string
+                        }) => (
                             <button
                                 key={n.key}
                                 onClick={() => setActive(n.key)}
