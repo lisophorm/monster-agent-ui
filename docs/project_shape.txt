@@ -1,0 +1,88 @@
+src/
+├─ app/
+│  ├─ page.tsx                       # landing (keep default)
+│  ├─ wireframe/                     # your current big file (leave as-is for now)
+│  │  └─ page.tsx
+│  ├─ leads/
+│  │  ├─ page.tsx                    # leads table + filters
+│  │  └─ import/route.ts             # POST CSV -> server action/API
+│  ├─ campaigns/
+│  │  └─ page.tsx
+│  ├─ agent/
+│  │  └─ page.tsx                    # “Draft Assistant” UI (Phase 2)
+│  ├─ review/
+│  │  └─ page.tsx
+│  ├─ reports/
+│  │  └─ page.tsx
+│  ├─ settings/
+│  │  └─ page.tsx
+│  └─ api/                           # server endpoints (if you prefer API routes over actions)
+│     ├─ leads/route.ts              # GET/POST leads
+│     ├─ cadences/route.ts           # GET/POST cadences
+│     └─ drafts/route.ts             # POST generate draft
+│
+├─ components/
+│  ├─ ui/                            # tailwind primitives only
+│  │  ├─ Card.tsx
+│  │  ├─ Button.tsx
+│  │  ├─ Badge.tsx
+│  │  ├─ Input.tsx
+│  │  └─ Table.tsx
+│  ├─ charts/
+│  │  └─ KpiSpark.tsx                # tiny sparkline (later)
+│  ├─ layout/
+│  │  ├─ Sidebar.tsx
+│  │  └─ Topbar.tsx
+│  └─ flows/
+│     └─ Phase2Map.tsx               # the flow map widget
+│
+├─ modules/                          # feature logic (composable)
+│  ├─ leads/
+│  │  ├─ LeadTable.tsx               # thin UI, no data fetching here
+│  │  ├─ LeadImport.tsx              # CSV dropzone + mapping
+│  │  ├─ schema.ts                   # zod Lead schema
+│  │  ├─ actions.ts                  # server actions: upsert, importCSV
+│  │  └─ repo.ts                     # data access adapter (filesystem/DB/CRM)
+│  ├─ cadences/
+│  │  ├─ CadenceDesigner.tsx
+│  │  ├─ schema.ts
+│  │  ├─ actions.ts
+│  │  └─ repo.ts
+│  ├─ agent/
+│  │  ├─ DraftComposer.tsx
+│  │  ├─ schema.ts
+│  │  ├─ actions.ts                  # server: generateDraft()
+│  │  └─ templates.ts                # canned snippets per region/persona
+│  ├─ review/
+│  │  └─ ReviewQueue.tsx
+│  └─ analytics/
+│     └─ kpis.ts                     # compute rates from tracked events
+│
+├─ lib/
+│  ├─ csv.ts                         # parse CSV -> Lead[]
+│  ├─ crm.ts                         # adapter stub (HubSpot/Pipedrive later)
+│  ├─ mail.ts                        # email provider stub
+│  ├─ linkedin.ts                    # LI provider stub
+│  ├─ whatsapp.ts                    # WA provider stub
+│  ├─ config.ts                      # read env, feature flags
+│  └─ logger.ts
+│
+├─ types/
+│  ├─ lead.ts
+│  ├─ cadence.ts
+│  └─ message.ts
+│
+├─ hooks/
+│  ├─ useLeadsFilters.ts
+│  ├─ useCsvImport.ts
+│  └─ useDraftAssistant.ts
+│
+├─ styles/
+│  └─ globals.css
+│
+├─ tests/                            # optional now; add when stable
+│  ├─ agent.generateDraft.test.ts
+│  └─ leads.importCsv.test.ts
+│
+└─ scripts/
+└─ seed.ts                        # local fixtures if you want
